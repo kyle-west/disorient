@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>disorient</title>
+    <meta name="description" content="disorient">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <style>
+      #debug {
+        position: absolute;
+        background-color: #11111155;
+        color: white;
+        top: 5px;
+        right: 5px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <pre id="debug"></pre>
+    <script>
+      (() => {
+        window.PLAYER = {}
+        const debugWindow = document.getElementById('debug')
+
+        AFRAME.registerComponent('camera-listener', {
+          log : function () {
+            var cameraEl = this.el.sceneEl.camera.el;
+            var rotation = cameraEl.getAttribute('rotation');
+            var worldPos = new THREE.Vector3();
+            worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
+            window.PLAYER.position = worldPos
+            window.PLAYER.position = worldPos
+            const data =
+              "Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) + ")\n" +
+              "Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")"
+            
+            if (debugWindow.innerHTML !== data) {
+              debugWindow.innerHTML = data
+            }
+          },
+
+          play: function () {
+            this.log();
+          },
+
+          tick: function () {
+            this.log();
+          },
+        });
+      })()
+    </script>
+    <a-scene>
+      <a-assets>
+        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous">
+        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
+      </a-assets>
+      
+      <!-- We can rotate and position the world to simulate artificial movement -->
+      <a-entity id="world" position="0 0 0"rotation="0 0 0">
+        <!-- Primitives. -->
+        <a-box position="-1 0.6 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.35 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="1 0.85 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 .1 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        
+        <!-- Background sky. -->
+        <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
+        
+        <!-- Ground. -->
+        <a-circle src="#groundTexture" rotation="-90 0 0" radius="32"></a-circle>
+        
+      </a-entity>
+      <a-entity id="player-space">
+        <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#555555"></a-plane>
+      </a-entity>
+      <!--Tracked controls. -->
+      <!-- <a-entity hand-controls="hand: left"></a-entity>
+      <a-entity hand-controls="hand: right"></a-entity> -->
+      <a-entity camera-listener></a-entity>
+    </a-scene>
+  </body>
+</html>
