@@ -52,47 +52,29 @@
     </script>
     <a-scene>
       <a-assets>
-        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous">
-        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
-        <img id="skyGrass" src="./assets/grass-field.jpg">
-        <img id="groundWhite" src="./assets/ground-white.jpg">
-        <img id="groundGrass" src="./assets/grass1.jpg">
-        <img id="crate1" src="./assets/crate1.jpg">
-        <img id="wall1" src="./assets/wall1.jpg">
-        <img id="wall2" src="./assets/wall2.jpg">
-        <img id="wall3" src="./assets/wall3.jpg">
-        <img id="wall4" src="./assets/wall4.jpg">
-        <img id="wall5" src="./assets/wall5.jpg">
-        <img id="glass1" src="./assets/glass1.jpg">
-        <a-asset-item id="tree1-obj" src="./models/tree-un-obj/tree-un.obj"></a-asset-item>
-        <a-asset-item id="tree1-mtl" src="./models/tree-un-obj/tree-un.mtl"></a-asset-item>
+        <img id="sky" src="./assets/sky-line.jpg">
+        <img id="dark-grid" src="./assets/dark-grid.jpg">
+        <img id="light-grid" src="./assets/light-grid.jpg">
       </a-assets>
       
       <!-- We can rotate and position the world to simulate artificial movement -->
       <a-entity id="world" position="0 0 0"rotation="0 0 0">
         <!-- Primitives. -->
-        <a-box position="1.2 0.5 1.2" rotation="0 45 0" src="#crate1" height="1" width="1" depth="1"></a-box>
-        <a-sphere position="1 4 -1.5" radius="1.25" src="#glass1" repeat="10 10"></a-sphere>
-        <a-cylinder position="-2 0.75 0" radius="0.5" height="1.5" src="#wall1"></a-cylinder>
-        <a-entity obj-model="obj: #tree1-obj; mtl: #tree1-mtl" scale="0.25 0.25 0.25" position="-0.7914 -1.53663 5.57666"></a-entity>   
-        
-        <!-- Play area plane -->
-        <!-- <a-plane position="0 0.01 0" rotation="-90 0 0" width="4" height="2.5" color="#7BC8A4"></a-plane> -->
-        
+        <a-box position="1.2 0.5 1.2" rotation="0 45 0" color="#FFFF00" src="#dark-grid" height="1" width="1" depth="1"></a-box>
+        <a-sphere position="1 4 -1.5" radius="1.25" src="#dark-grid" repeat="10 10"></a-sphere>
+        <a-cylinder position="-2 0.75 0" radius="0.5" height="1.5" color="#FF0000" src="#dark-grid" repeat="5 5"></a-cylinder>
+
         <!-- Background sky. -->
-        <!-- <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky> -->
-        <a-sky height="2048" radius="30" src="#skyGrass" theta-length="90" width="2048" position="0 0 0"></a-sky>
-        <!-- <a-sky height="2048" radius="30" color="white" theta-length="90" width="2048" position="0 0 0"></a-sky> -->
+        <a-sky height="2048" radius="30" src="#light-grid" repeat="20 10" color="purple" theta-length="90" width="2048" position="0 0 0"></a-sky>
         
         <!-- Ground. -->
-        <!-- <a-circle src="#groundTexture" rotation="-90 0 0" radius="32"></a-circle> -->
-        <a-circle src="#groundGrass" rotation="-90 0 0" radius="32" material="repeat: 100 100"></a-circle>
+        <a-circle src="#dark-grid" rotation="-90 0 0" radius="32" material="repeat: 10 10"></a-circle>
 
         <!-- Walls and junk -->
-        <a-box position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" src="#wall2" repeat="6 4"></a-box>
-        <a-box position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" src="#wall3" repeat="10 10"></a-box>
-        <a-box position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" src="#wall4" repeat="10 10"></a-box>
-        <a-box position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" src="#wall5" repeat="10 10"></a-box>
+        <a-box position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" color="#0000FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" color="#FF00FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" color="#00FFFF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
       </a-entity>
       <!--Tracked controls. -->
       <a-entity hand-controls="hand: left"></a-entity>
