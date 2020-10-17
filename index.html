@@ -58,6 +58,10 @@
         <img id="groundWhite" src="./assets/ground-white.jpg">
         <img id="crate1" src="./assets/crate1.jpg">
         <img id="wall1" src="./assets/wall1.jpg">
+        <img id="wall2" src="./assets/wall2.jpg">
+        <img id="wall3" src="./assets/wall3.jpg">
+        <img id="wall4" src="./assets/wall4.jpg">
+        <img id="wall5" src="./assets/wall5.jpg">
         <img id="glass1" src="./assets/glass1.jpg">
       </a-assets>
       
@@ -66,8 +70,10 @@
         <!-- Primitives. -->
         <a-box position="1.2 0.5 1.2" rotation="0 45 0" src="#crate1" height="1" width="1" depth="1"></a-box>
         <a-sphere position="1 4 -1.5" radius="1.25" src="#glass1" repeat="10 10"></a-sphere>
-        <a-cylinder position="-2.4 0.75 0" radius="0.5" height="1.5" src="#wall1"></a-cylinder>
-        <a-plane position="0 0.01 0" rotation="-90 0 0" width="4" height="2.5" color="#7BC8A4"></a-plane>
+        <a-cylinder position="-2 0.75 0" radius="0.5" height="1.5" src="#wall1"></a-cylinder>
+        
+        <!-- Play area plane -->
+        <!-- <a-plane position="0 0.01 0" rotation="-90 0 0" width="4" height="2.5" color="#7BC8A4"></a-plane> -->
         
         <!-- Background sky. -->
         <!-- <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky> -->
@@ -80,10 +86,10 @@
         material="repeat: 100 100"></a-circle>
 
         <!-- Walls and junk -->
-        <a-box position="6 0 0" rotation="0 0 0" color="blue" depth="12" height="8" width="0.25"></a-box>
-        <a-box position="0 0 -6" rotation="0 90 0" color="purple" depth="12" height="6" width="0.25"></a-box>
-        <a-box position="-6 0 0" rotation="0 0 0" color="green" depth="12" height="4" width="0.25"></a-box>
-        <a-box position="0 0 6" rotation="0 90 0" color="red" depth="12" height="2" width="0.25"></a-box>
+        <a-box position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" src="#wall2" repeat="6 4"></a-box>
+        <a-box position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" src="#wall3" repeat="10 10"></a-box>
+        <a-box position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" src="#wall4" repeat="10 10"></a-box>
+        <a-box position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" src="#wall5" repeat="10 10"></a-box>
       </a-entity>
       <!--Tracked controls. -->
       <a-entity hand-controls="hand: left"></a-entity>
