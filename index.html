@@ -106,7 +106,7 @@
         grab
         name="left-hand"
         ></a-entity>
-        <a-entity
+      <a-entity
         id="rightController"
         static-body="shape: sphere; sphereRadius: 0.005;"
         vive-controls="hand: right"
@@ -121,11 +121,12 @@
       const button = make({
         type: 'cylinder',
         under: '#table',
+        id: 'clone-btn',
         staticBody,
         class: 'throwable', // todo figure out a better way of allowing collision detection with controllers
 
         position: "0 .05 0",
-        radius: "0.05",
+        radius: "0.1",
         height: "0.1",
         color: "#FF0000",
         src: "#light-grid",
@@ -137,7 +138,7 @@
         const name = collider.name || collider.getAttribute('name')
         
         if (name && name.includes('hand')) {
-          newBlock("-0.1 2 0")
+          newBlock("-0.1 1.25 0")
         }
       }))
 
@@ -150,7 +151,7 @@
         class: "throwable",
         dynamicBody,
 
-        position: "0 2 0",
+        position: "0 1.5 0",
         rotation: "0 45 0",
         color: "#0000FF",
         src: "#dark-grid",
@@ -169,7 +170,7 @@
           class: "throwable",
           dynamicBody,
   
-          position: "0 2 0",
+          position: "0 1.5 0",
           rotation: "0 45 0",
           color: "#0000FF",
           src: "#dark-grid",
