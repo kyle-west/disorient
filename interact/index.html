@@ -12,7 +12,7 @@
   </head>
   <body>
     <!-- Moon gravity -->
-    <a-scene physics="gravity: -1.6" renderer="antialias: true">
+    <a-scene physics="gravity: -5" renderer="antialias: true">
       <!-- Player -->
       <a-entity camera look-controls wasd-controls></a-entity>
       <a-entity
@@ -25,7 +25,7 @@
       ></a-entity>
       <a-entity
         id="rightController"
-        static-body="shape: sphere; sphereRadius: 0.01;"
+        static-body="shape: sphere; sphereRadius: 0.005;"
         vive-controls="hand: right"
         oculus-touch-controls="hand: right"
         sphere-collider="objects: .throwable"

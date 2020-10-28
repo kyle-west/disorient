@@ -5,6 +5,8 @@
     <title>disorient</title>
     <meta name="description" content="disorient">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <style>
       #debug {
         position: absolute;
@@ -60,9 +62,15 @@
       <!-- We can rotate and position the world to simulate artificial movement -->
       <a-entity id="world" position="0 0 0"rotation="0 0 0">
         <!-- Primitives. -->
-        <a-box position="1.2 0.5 1.2" rotation="0 45 0" color="#FFFF00" src="#dark-grid" height="1" width="1" depth="1"></a-box>
-        <a-sphere position="1 4 -1.5" radius="1.25" src="#dark-grid" repeat="10 10"></a-sphere>
-        <a-cylinder position="-2 0.75 0" radius="0.5" height="1.5" color="#FF0000" src="#light-grid" repeat="5 5"></a-cylinder>
+        <a-box
+          class="throwable" dynamic-body 
+          position="1.2 0.5 1.2" rotation="0 45 0" color="#FFFF00" src="#dark-grid" height="1" width="1" depth="1"></a-box>
+        <a-sphere
+          class="throwable" dynamic-body 
+          position="1 3 -1.5" radius="1.25" src="#dark-grid" repeat="10 10"></a-sphere>
+        <a-cylinder
+          class="throwable" dynamic-body 
+          position="-2 0.75 0" radius="0.5" height="1.5" color="#FF0000" src="#light-grid" repeat="5 5"></a-cylinder>
 
         <!-- Background sky. -->
         <!-- <a-sky height="2048" radius="30" src="#light-grid" repeat="20 10" color="purple" theta-length="90" width="2048" position="0 0 0"></a-sky> -->
@@ -70,18 +78,42 @@
         <a-entity light="type: ambient; color: #BBB" position="0 4 0"></a-entity>
 
         <!-- Ground. -->
-        <a-circle src="#dark-grid" rotation="-90 0 0" radius="32" material="repeat: 10 10"></a-circle>
+        <!-- Ground -->
+        <a-plane
+          static-body
+          rotation="-90 0 0"
+          width="10"
+          height="10"
+          src="#dark-grid"
+          material="repeat: 10 10"
+        ></a-plane>
+
 
         <!-- Walls and junk -->
-        <a-box position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" color="#0000FF" src="#dark-grid" repeat="5 5"></a-box>
-        <a-box position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" color="#FF00FF" src="#dark-grid" repeat="5 5"></a-box>
-        <a-box position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" color="#00FFFF" src="#dark-grid" repeat="5 5"></a-box>
-        <a-box position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" color="#0000FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" color="#FF00FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" color="#00FFFF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
       </a-entity>
-      <!--Tracked controls. -->
-      <a-entity hand-controls="hand: left"></a-entity>
-      <a-entity hand-controls="hand: right"></a-entity>
-      <a-entity camera-listener></a-entity>
+
+      <!-- Player -->
+      <a-entity camera look-controls wasd-controls></a-entity>
+      <a-entity
+        id="leftController"
+        static-body="shape: sphere; sphereRadius: 0.01;"
+        vive-controls="hand: left"
+        oculus-touch-controls="hand: left"
+        sphere-collider="objects: .throwable"
+        grab
+      ></a-entity>
+      <a-entity
+        id="rightController"
+        static-body="shape: sphere; sphereRadius: 0.005;"
+        vive-controls="hand: right"
+        oculus-touch-controls="hand: right"
+        sphere-collider="objects: .throwable"
+        grab
+      ></a-entity>
     </a-scene>
   </body>
 </html>
