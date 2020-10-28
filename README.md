@@ -14,6 +14,6 @@ npm run start
 
 ### WIP 
 
-- [ ] Interactions with entities like in https://wmurphyrd.github.io/aframe-super-hands-component/examples/sticky/
+- [ ] Interactions with entities like in https://github.com/wmurphyrd/aframe-super-hands-component/
 - [ ] Sounds
 - [ ] animations/transitions/swap-outs
