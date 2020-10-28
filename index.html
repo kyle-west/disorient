@@ -106,6 +106,7 @@
       </a-entity>
 
       <!-- Player -->
+      <!-- <a-entity camera look-controls wasd-controls position="-1 1.5 1" ></a-entity> -->
       <a-entity camera look-controls wasd-controls></a-entity>
       <a-entity
         id="leftController"
@@ -152,28 +153,31 @@
       }))
 
       make({
-          name: 'test-hand',
-          type: 'box',
-          under: '#table',
-          relative: true,
-          
-          class: "throwable",
-          dynamicBody,
-  
-          position: "0 2 0",
-          rotation: "0 45 0",
-          color: "#0000FF",
-          src: "#light-grid",
-          height: "0.1",
-          width: "0.1",
-          depth: "0.1",
-        })
+        name: 'test-hand',
+        type: 'box',
+        under: '#table',
+        relative: true,
+        
+        class: "throwable",
+        dynamicBody,
+
+        position: "0 2 0",
+        rotation: "0 45 0",
+        color: "#0000FF",
+        src: "#light-grid",
+        height: "0.1",
+        width: "0.1",
+        depth: "0.1",
+      })
 
       function newBlock (position) {
+        const id = `id_${Math.random().toString().replace('.', '')}`
+        console.log('New Block!', id)
         return make({
           type: 'box',
           under: '#table',
           relative: !position,
+          id,
           
           class: "throwable",
           dynamicBody,
