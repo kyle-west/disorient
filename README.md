@@ -14,8 +14,12 @@ npm run start
 
 ### WIP 
 
-- [ ] Interactions with entities like in https://github.com/bryik/aframe-ball-throw
+- [x] Interactions with entities (throwable)
+- [ ] Interactions with entities (clickable)
 - [ ] Sounds
 - [ ] animations/transitions/swap-outs
 
-https://kyle-west.github.io/disorient/interact/
+
+## Helpful docs
+using this physics engine:
+https://github.com/n5ro/aframe-physics-system
