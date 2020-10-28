@@ -5,8 +5,6 @@
     <title>disorient</title>
     <meta name="description" content="disorient">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
     <style>
       #debug {
         position: absolute;
@@ -81,12 +79,8 @@
         <a-box position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
       </a-entity>
       <!--Tracked controls. -->
-      <!-- <a-entity hand-controls="hand: left"></a-entity>
-      <a-entity hand-controls="hand: right"></a-entity> -->
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="left"></a-entity>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="right"></a-entity>
-
-      <a-box hoverable grabbable stretchable draggable dropppable color="blue" position="0 0 -1"></a-box>
+      <a-entity hand-controls="hand: left"></a-entity>
+      <a-entity hand-controls="hand: right"></a-entity>
       <a-entity camera-listener></a-entity>
     </a-scene>
   </body>
