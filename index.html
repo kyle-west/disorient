@@ -68,17 +68,6 @@
           <a-box
             static-body 
             color="#FFFF00" src="#dark-grid" height="0.1" width="1.5" depth="0.75"></a-box>
-          
-          <!-- Stuff on table -->
-          <!-- <a-cylinder
-            class="throwable" dynamic-body 
-            position="-1.11 1.25 -1.2" radius="0.05" height="0.15" color="#FF0000" src="#light-grid" repeat="5 5"></a-cylinder>
-          <a-sphere
-            dynamic-body 
-            position="-1.27 1.16 -1.03" radius="0.05" src="#light-grid" repeat="10 10"></a-sphere>
-          <a-box
-            class="throwable" dynamic-body 
-            position="-0.81 1.19 -1.32" rotation="0 45 0" color="#FFFF00" src="#light-grid" height="0.1" width="0.1" depth="0.1"></a-box> -->
         </a-entity>
         
 
@@ -91,10 +80,10 @@
         <a-plane
           static-body
           rotation="-90 0 0"
-          width="50"
-          height="50"
-          src="#dark-grid"
-          material="repeat: 10 10"
+          width="60"
+          height="60"
+          src="#light-grid"
+          material="repeat: 120 120"
         ></a-plane>
 
 
@@ -106,8 +95,8 @@
       </a-entity>
 
       <!-- Player -->
-      <!-- <a-entity camera look-controls wasd-controls position="-1 1.5 1" ></a-entity> -->
-      <a-entity camera look-controls wasd-controls></a-entity>
+      <a-entity camera look-controls wasd-controls position="-1 1.5 1" ></a-entity>
+      <!-- <a-entity camera look-controls wasd-controls></a-entity> -->
       <a-entity
         id="leftController"
         static-body="shape: sphere; sphereRadius: 0.01;"
@@ -164,11 +153,31 @@
         position: "0 2 0",
         rotation: "0 45 0",
         color: "#0000FF",
-        src: "#light-grid",
+        src: "#dark-grid",
         height: "0.1",
         width: "0.1",
         depth: "0.1",
       })
+
+      setTimeout(() => {
+        make({
+          name: 'test-hand',
+          type: 'box',
+          under: '#table',
+          relative: false,
+          
+          class: "throwable",
+          dynamicBody,
+  
+          position: "0 2 0",
+          rotation: "0 45 0",
+          color: "#0000FF",
+          src: "#dark-grid",
+          height: "0.1",
+          width: "0.1",
+          depth: "0.1",
+        })
+      }, 5000)
 
       function newBlock (position) {
         const id = `id_${Math.random().toString().replace('.', '')}`
@@ -184,7 +193,7 @@
   
           position: position || randomTriad({ min: 0.15, max: [0.5, 0.2, 0.4], y: 0.2 }),
           rotation: "0 45 0",
-          color: "#FFFF00",
+          color: randomColor(),
           src: "#light-grid",
           height: "0.1",
           width: "0.1",
