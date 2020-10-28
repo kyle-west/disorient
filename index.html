@@ -132,6 +132,7 @@
         type: 'cylinder',
         under: '#table',
         staticBody,
+        class: 'throwable', // todo figure out a better way of allowing collision detection with controllers
 
         position: "0 .05 0",
         radius: "0.05",
@@ -146,7 +147,7 @@
         const name = collider.name || collider.getAttribute('name')
         
         if (name && name.includes('hand')) {
-          newBlock()
+          newBlock("-0.1 2 0")
         }
       }))
 
@@ -168,16 +169,16 @@
           depth: "0.1",
         })
 
-      function newBlock () {
+      function newBlock (position) {
         return make({
           type: 'box',
           under: '#table',
-          relative: true,
+          relative: !position,
           
           class: "throwable",
           dynamicBody,
   
-          position: randomTriad({ min: 0.15, max: [0.5, 0.2, 0.4], y: 0.2 }),
+          position: position || randomTriad({ min: 0.15, max: [0.5, 0.2, 0.4], y: 0.2 }),
           rotation: "0 45 0",
           color: "#FFFF00",
           src: "#light-grid",
@@ -187,15 +188,15 @@
         })
       }
 
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
-      newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
+      // newBlock()
     </script>
   </body>
 </html>
