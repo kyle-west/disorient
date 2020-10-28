@@ -137,7 +137,7 @@
         const collider = evt.detail.body.el
         const name = collider.name || collider.getAttribute('name')
         
-        if (name && name.includes('hand')) {
+        if (name && (name.includes('hand') || name.includes('bat'))) {
           newBlock("-0.1 1.25 0")
         }
       }))
@@ -155,9 +155,27 @@
         rotation: "0 45 0",
         color: "#0000FF",
         src: "#dark-grid",
-        height: "0.1",
-        width: "0.1",
-        depth: "0.1",
+        height: "0.2",
+        width: "0.2",
+        depth: "0.2",
+      })
+
+      make({
+        name: 'bat',
+        type: 'cylinder',
+        under: '#table',
+        relative: false,
+        
+        class: "throwable",
+        dynamicBody,
+
+        position: "0.5 0.5 0",
+        rotation: "57 -52 0", 
+        radius: "0.025",
+        height: "1",
+        color: "#FF0000",
+        src: "#light-grid",
+        repeat: "5 5",
       })
 
       setTimeout(() => {
@@ -174,9 +192,9 @@
           rotation: "0 45 0",
           color: "#0000FF",
           src: "#dark-grid",
-          height: "0.1",
-          width: "0.1",
-          depth: "0.1",
+          height: "0.2",
+          width: "0.2",
+          depth: "0.2",
         })
       }, 5000)
 
