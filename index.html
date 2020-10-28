@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="./lib/util.js"></script>
     <style>
       #debug {
         position: absolute;
@@ -61,25 +62,15 @@
       
       <!-- We can rotate and position the world to simulate artificial movement -->
       <a-entity id="world" position="0 0 0" rotation="0 0 0">
-        <!-- Primitives. -->
-        <a-box
-          class="throwable" dynamic-body 
-          position="1.2 0.5 1.2" rotation="0 45 0" color="#FFFF00" src="#dark-grid" height="1" width="1" depth="1"></a-box>
-        <a-sphere
-          dynamic-body 
-          position="1 3 -1.5" radius="0.5" src="#dark-grid" repeat="10 10"></a-sphere>
-        <a-cylinder
-          class="throwable" dynamic-body 
-          position="-2 0.75 0" radius="0.5" height="1.5" color="#FF0000" src="#dark-grid" repeat="5 5"></a-cylinder>
-          
+
         <!-- Table -->
-        <a-entity id="table" position="-1.2 1 -1.2" rotation="0 45 0">
+        <a-entity id="table" position="-0.7 1 -0.7" rotation="0 45 0">
           <a-box
             static-body 
             color="#FFFF00" src="#dark-grid" height="0.1" width="1.5" depth="0.75"></a-box>
-
+          
           <!-- Stuff on table -->
-          <a-cylinder
+          <!-- <a-cylinder
             class="throwable" dynamic-body 
             position="-1.11 1.25 -1.2" radius="0.05" height="0.15" color="#FF0000" src="#light-grid" repeat="5 5"></a-cylinder>
           <a-sphere
@@ -87,7 +78,7 @@
             position="-1.27 1.16 -1.03" radius="0.05" src="#light-grid" repeat="10 10"></a-sphere>
           <a-box
             class="throwable" dynamic-body 
-            position="-0.81 1.19 -1.32" rotation="0 45 0" color="#FFFF00" src="#light-grid" height="0.1" width="0.1" depth="0.1"></a-box>
+            position="-0.81 1.19 -1.32" rotation="0 45 0" color="#FFFF00" src="#light-grid" height="0.1" width="0.1" depth="0.1"></a-box> -->
         </a-entity>
         
 
@@ -108,10 +99,10 @@
 
 
         <!-- Walls and junk -->
-        <a-box static-body position="3 0 0" rotation="0 0 0" depth="6" height="8" width="0.25" color="#0000FF" src="#dark-grid" repeat="5 5"></a-box>
-        <a-box static-body position="0 0 -3" rotation="0 90 0" depth="6" height="6" width="0.25" color="#FF00FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="3 0 0" rotation="0 0 0" depth="6" height="2" width="0.25" color="#0000FF" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="0 0 -3" rotation="0 90 0" depth="6" height="2" width="0.25" color="#FF00FF" src="#dark-grid" repeat="5 5"></a-box>
         <a-box static-body position="0 0 3" rotation="0 90 0" depth="6" height="2" width="0.25" color="#00FFFF" src="#dark-grid" repeat="5 5"></a-box>
-        <a-box static-body position="-3 0 0" rotation="0 0 0" depth="6" height="4" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
+        <a-box static-body position="-3 0 0" rotation="0 0 0" depth="6" height="2" width="0.25" color="#00FF00" src="#dark-grid" repeat="5 5"></a-box>
       </a-entity>
 
       <!-- Player -->
@@ -123,15 +114,88 @@
         oculus-touch-controls="hand: left"
         sphere-collider="objects: .throwable"
         grab
-      ></a-entity>
-      <a-entity
+        name="left-hand"
+        ></a-entity>
+        <a-entity
         id="rightController"
         static-body="shape: sphere; sphereRadius: 0.005;"
         vive-controls="hand: right"
         oculus-touch-controls="hand: right"
         sphere-collider="objects: .throwable"
         grab
+        name="right-hand"
       ></a-entity>
     </a-scene>
+
+    <script>
+      const button = make({
+        type: 'cylinder',
+        under: '#table',
+        staticBody,
+
+        position: "0 .05 0",
+        radius: "0.05",
+        height: "0.1",
+        color: "#FF0000",
+        src: "#light-grid",
+        repeat: "5 5",
+      })
+
+      button.addEventListener('collide', debounce((evt) => {
+        const collider = evt.detail.body.el
+        const name = collider.name || collider.getAttribute('name')
+        
+        if (name && name.includes('hand')) {
+          newBlock()
+        }
+      }))
+
+      make({
+          name: 'test-hand',
+          type: 'box',
+          under: '#table',
+          relative: true,
+          
+          class: "throwable",
+          dynamicBody,
+  
+          position: "0 2 0",
+          rotation: "0 45 0",
+          color: "#0000FF",
+          src: "#light-grid",
+          height: "0.1",
+          width: "0.1",
+          depth: "0.1",
+        })
+
+      function newBlock () {
+        return make({
+          type: 'box',
+          under: '#table',
+          relative: true,
+          
+          class: "throwable",
+          dynamicBody,
+  
+          position: randomTriad({ min: 0.15, max: [0.5, 0.2, 0.4], y: 0.2 }),
+          rotation: "0 45 0",
+          color: "#FFFF00",
+          src: "#light-grid",
+          height: "0.1",
+          width: "0.1",
+          depth: "0.1",
+        })
+      }
+
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+      newBlock()
+    </script>
   </body>
 </html>
