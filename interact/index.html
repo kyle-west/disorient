@@ -17,7 +17,7 @@
       <a-entity camera look-controls wasd-controls></a-entity>
       <a-entity
         id="leftController"
-        static-body="shape: sphere; sphereRadius: 0.02;"
+        static-body="shape: sphere; sphereRadius: 0.01;"
         vive-controls="hand: left"
         oculus-touch-controls="hand: left"
         sphere-collider="objects: .throwable"
@@ -25,7 +25,7 @@
       ></a-entity>
       <a-entity
         id="rightController"
-        static-body="shape: sphere; sphereRadius: 0.02;"
+        static-body="shape: sphere; sphereRadius: 0.01;"
         vive-controls="hand: right"
         oculus-touch-controls="hand: right"
         sphere-collider="objects: .throwable"
@@ -54,6 +54,27 @@
         radius="0.10"
         color="green"
       ></a-sphere>
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="0 0.5 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="0.25 0.5 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="-0.25 0.5 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
 
       <!--Table to hold the targets -->
       <a-box
@@ -74,7 +95,7 @@
         rotation="-90 0 0"
         width="10"
         height="10"
-        color="black"
+        color="grey"
       ></a-plane>
 
       <!-- Sky -->
