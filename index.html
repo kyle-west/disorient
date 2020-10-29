@@ -59,6 +59,8 @@
         <img id="sky" src="./assets/sky-line.jpg">
         <img id="dark-grid" src="./assets/dark-grid.jpg">
         <img id="light-grid" src="./assets/light-grid.jpg">
+        <audio id="hit-sound" src="./assets/hit.mp3" preload="auto"></audio>
+        <audio id="splat-sound" src="./assets/splat.mp3" preload="auto"></audio>
       </a-assets>
       
       <!-- We can rotate and position the world to simulate artificial movement -->
@@ -71,7 +73,7 @@
             color="#FFFF00" src="#dark-grid" height="0.1" width="1.5" depth="0.75"></a-box>
         </a-entity>
 
-        <a-entity id="table2" position="0.7 0.5 0.7" rotation="0 45 0">
+        <a-entity id="table2" position="1 0.5 -0.7" rotation="0 -45 0">
           <a-box
             static-body 
             color="#white" src="#light-grid" height="0.1" width="1.5" depth="0.75"></a-box>
@@ -136,11 +138,13 @@
       const bat1 = Bat({
         name: 'bat1', 
         color: "black",
+        sound: "src: #hit-sound",
       })
 
       const bat2 = Bat({
         name: 'bat2', 
         color: "grey",
+        sound: "src: #splat-sound",
       })
     </script>
   </body>
