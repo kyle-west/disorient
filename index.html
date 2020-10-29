@@ -8,6 +8,7 @@
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="./lib/util.js"></script>
+    <script src="./lib/components.js"></script>
     <style>
       #debug {
         position: absolute;
@@ -64,10 +65,16 @@
       <a-entity id="world" position="0 0 0" rotation="0 0 0">
 
         <!-- Table -->
-        <a-entity id="table" position="-0.7 1 -0.7" rotation="0 45 0">
+        <a-entity id="table" position="-0.7 0.75 -0.7" rotation="0 45 0">
           <a-box
             static-body 
             color="#FFFF00" src="#dark-grid" height="0.1" width="1.5" depth="0.75"></a-box>
+        </a-entity>
+
+        <a-entity id="table2" position="0.7 0.5 0.7" rotation="0 45 0">
+          <a-box
+            static-body 
+            color="#white" src="#light-grid" height="0.1" width="1.5" depth="0.75"></a-box>
         </a-entity>
         
 
@@ -96,7 +103,7 @@
 
       <!-- Player -->
       <a-entity camera look-controls wasd-controls position="-1 1.5 1" ></a-entity>
-      <!-- <a-entity camera look-controls wasd-controls></a-entity> -->
+      <!-- <a-entity camera look-controls wasd-controls position="0 1.5 3" ></a-entity> -->
       <a-entity
         id="leftController"
         static-body="shape: sphere; sphereRadius: 0.01;"
@@ -118,126 +125,23 @@
     </a-scene>
 
     <script>
-      const button = make({
-        type: 'cylinder',
-        under: '#table',
-        id: 'clone-btn',
-        staticBody,
-        class: 'throwable', // todo figure out a better way of allowing collision detection with controllers
+      const redBtn = Target({ color: 'red', position: "0.4 .05 0.2" })
+      const blueBtn = Target({ color: 'blue', position: "0 .05 0.2" })
+      const greenBtn = Target({ color: 'green', position: "-0.4 .05 0.2" })
 
-        position: "0.4 .05 0.2",
-        radius: "0.1",
-        height: "0.1",
-        color: "#FF0000",
-        src: "#light-grid",
-        repeat: "5 5",
+      const orangeBtn = Target({ color: 'orange', position: "0.4 .05 -0.2" })
+      const yellowBtn = Target({ color: 'yellow', position: "0 .05 -0.2" })
+      const purpleBtn = Target({ color: 'purple', position: "-0.4 .05 -0.2" })
+
+      const bat1 = Bat({
+        name: 'bat1', 
+        color: "black",
       })
 
-      button.addEventListener('collide', debounce((evt) => {
-        const collider = evt.detail.body.el
-        const name = collider.name || collider.getAttribute('name')
-        
-        if (name && (name.includes('hand') || name.includes('bat'))) {
-          newBlock("-0.1 1.25 0")
-        }
-      }))
-
-      make({
-        name: 'test-hand',
-        type: 'box',
-        under: '#table',
-        relative: true,
-        
-        class: "throwable",
-        dynamicBody,
-
-        position: "0 1.5 0",
-        rotation: "0 45 0",
-        color: "#0000FF",
-        src: "#dark-grid",
-        height: "0.2",
-        width: "0.2",
-        depth: "0.2",
+      const bat2 = Bat({
+        name: 'bat2', 
+        color: "grey",
       })
-
-      make({
-        name: 'bat1',
-        type: 'cylinder',
-        under: '#table',
-        relative: false,
-        
-        class: "throwable",
-        dynamicBody,
-
-        position: "0.5 0.5 0",
-        rotation: "57 -52 0", 
-        radius: "0.025",
-        height: "1",
-        color: "#FF0000",
-        src: "#light-grid",
-        repeat: "5 5",
-      })
-
-      make({
-        name: 'bat2',
-        type: 'cylinder',
-        under: '#table',
-        relative: false,
-        
-        class: "throwable",
-        dynamicBody,
-
-        position: "0.8 0.8 0",
-        rotation: "50 -52 0", 
-        radius: "0.025",
-        height: "1",
-        color: "#0000FF",
-        src: "#light-grid",
-        repeat: "5 5",
-        spring: "damping: 0; stiffness: 500;"
-      })
-
-      setTimeout(() => {
-        make({
-          name: 'test-hand',
-          type: 'box',
-          under: '#table',
-          relative: false,
-          
-          class: "throwable",
-          dynamicBody,
-  
-          position: "0 1.5 0",
-          rotation: "0 45 0",
-          color: "#0000FF",
-          src: "#dark-grid",
-          height: "0.2",
-          width: "0.2",
-          depth: "0.2",
-        })
-      }, 5000)
-
-      function newBlock (position) {
-        const id = `id_${Math.random().toString().replace('.', '')}`
-        console.log('New Block!', id)
-        return make({
-          type: 'box',
-          under: '#table',
-          relative: !position,
-          id,
-          
-          class: "throwable",
-          dynamicBody,
-  
-          position: position || randomTriad({ min: 0.15, max: [0.5, 0.2, 0.4], y: 0.2 }),
-          rotation: "0 45 0",
-          color: randomColor(),
-          src: "#light-grid",
-          height: "0.1",
-          width: "0.1",
-          depth: "0.1",
-        })
-      }
     </script>
   </body>
 </html>
