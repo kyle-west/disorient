@@ -127,24 +127,22 @@
     </a-scene>
 
     <script>
-      const redBtn = Target({ color: 'red', position: "0.4 .05 0.2" })
-      const blueBtn = Target({ color: 'blue', position: "0 .05 0.2" })
-      const greenBtn = Target({ color: 'green', position: "-0.4 .05 0.2" })
+      const redBtn = Target({ color: 'red', position: "0.4 .05 0.2", sound: "src: #hit-sound" })
+      const blueBtn = Target({ color: 'blue', position: "0 .05 0.2", sound: "src: #hit-sound" })
+      const greenBtn = Target({ color: 'green', position: "-0.4 .05 0.2", sound: "src: #hit-sound" })
 
-      const orangeBtn = Target({ color: 'orange', position: "0.4 .05 -0.2" })
-      const yellowBtn = Target({ color: 'yellow', position: "0 .05 -0.2" })
-      const purpleBtn = Target({ color: 'purple', position: "-0.4 .05 -0.2" })
+      const orangeBtn = Target({ color: 'orange', position: "0.4 .05 -0.2", sound: "src: #splat-sound" })
+      const yellowBtn = Target({ color: 'yellow', position: "0 .05 -0.2", sound: "src: #splat-sound" })
+      const purpleBtn = Target({ color: 'purple', position: "-0.4 .05 -0.2", sound: "src: #splat-sound" })
 
       const bat1 = Bat({
         name: 'bat1', 
         color: "black",
-        sound: "src: #hit-sound",
       })
 
       const bat2 = Bat({
         name: 'bat2', 
         color: "grey",
-        sound: "src: #splat-sound",
       })
     </script>
   </body>
