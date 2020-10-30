@@ -5,8 +5,9 @@
     <title>disorient</title>
     <meta name="description" content="disorient">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
     <script src="./lib/util.js"></script>
     <script src="./lib/components.js"></script>
     <style>
@@ -114,7 +115,8 @@
         sphere-collider="objects: .throwable"
         grab
         name="left-hand"
-        ></a-entity>
+        haptics="events: triggerdown; dur: 1000; force: 0.5"
+      ></a-entity>
       <a-entity
         id="rightController"
         static-body="shape: sphere; sphereRadius: 0.005;"
@@ -127,23 +129,19 @@
     </a-scene>
 
     <script>
-      const redBtn = Target({ color: 'red', position: "0.4 .05 0.2", sound: "src: #hit-sound" })
-      const blueBtn = Target({ color: 'blue', position: "0 .05 0.2", sound: "src: #hit-sound" })
-      const greenBtn = Target({ color: 'green', position: "-0.4 .05 0.2", sound: "src: #hit-sound" })
+      const leftController = document.getElementById('leftController')
+      const rightController = document.getElementById('rightController')
 
-      const orangeBtn = Target({ color: 'orange', position: "0.4 .05 -0.2", sound: "src: #splat-sound" })
-      const yellowBtn = Target({ color: 'yellow', position: "0 .05 -0.2", sound: "src: #splat-sound" })
-      const purpleBtn = Target({ color: 'purple', position: "-0.4 .05 -0.2", sound: "src: #splat-sound" })
+      const redBtn = Target({ color: 'red', position: "0.4 .05 0.2" })
+      const blueBtn = Target({ color: 'blue', position: "0 .05 0.2" })
+      const greenBtn = Target({ color: 'green', position: "-0.4 .05 0.2" })
 
-      const bat1 = Bat({
-        name: 'bat1', 
-        color: "black",
-      })
+      const orangeBtn = Target({ color: 'orange', position: "0.4 .05 -0.2" })
+      const yellowBtn = Target({ color: 'yellow', position: "0 .05 -0.2" })
+      const purpleBtn = Target({ color: 'purple', position: "-0.4 .05 -0.2" })
 
-      const bat2 = Bat({
-        name: 'bat2', 
-        color: "grey",
-      })
+      const bat1 = Bat({ color: "black" })
+      const bat2 = Bat({ color: "grey" })
     </script>
   </body>
 </html>
