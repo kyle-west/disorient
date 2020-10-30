@@ -115,9 +115,9 @@
         sphere-collider="objects: .throwable"
         grab
         name="left-hand"
-        haptics="events: triggerdown; dur: 50; force: 0.25"
-        ></a-entity>
-        <a-entity
+        haptics="events: triggerdown; dur: 1000; force: 0.5"
+      ></a-entity>
+      <a-entity
         id="rightController"
         static-body="shape: sphere; sphereRadius: 0.005;"
         vive-controls="hand: right"
@@ -125,17 +125,12 @@
         sphere-collider="objects: .throwable"
         grab
         name="right-hand"
-        haptics="events: triggerdown; dur: 25; force: 0.1"
       ></a-entity>
     </a-scene>
 
     <script>
       const leftController = document.getElementById('leftController')
       const rightController = document.getElementById('rightController')
-      const haptics = {
-        left: leftController.components.haptics,
-        right: rightController.components.haptics,
-      }
 
       const redBtn = Target({ color: 'red', position: "0.4 .05 0.2" })
       const blueBtn = Target({ color: 'blue', position: "0 .05 0.2" })
