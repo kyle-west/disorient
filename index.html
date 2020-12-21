@@ -6,8 +6,9 @@
     <meta name="description" content="disorient">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script> -->
     <script src="./lib/button.js"></script>
     <script src="./lib/util.js"></script>
     <script src="./lib/components.js"></script>
@@ -116,6 +117,7 @@
         oculus-touch-controls="hand: left"
         sphere-collider="objects: .throwable"
         grab
+        super-hands
         name="left-hand"
         haptics="events: triggerdown; dur: 50; force: 0.25"
       ></a-entity>
@@ -126,6 +128,7 @@
         oculus-touch-controls="hand: right"
         sphere-collider="objects: .throwable"
         grab
+        super-hands
         name="right-hand"
         haptics="events: triggerdown; dur: 50; force: 0.25"
       ></a-entity>
